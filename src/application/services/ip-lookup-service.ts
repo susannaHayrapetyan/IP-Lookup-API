@@ -1,14 +1,12 @@
-import { IPInfo } from '../../domain/entities/ip-info';
+import { IPInfoSource } from '../../domain/entities/ip-info';
 import { IIPRepository } from '../../domain/interfaces/ip-repository';
+import { IIPLookupService } from '../../domain/interfaces/ip-lookup-service';
 import { IPLookupAPI } from '../../infrastructure/external/ip-lookup-api';
 
-export class IPLookupService {
+export class IPLookupService implements IIPLookupService{
   constructor(private ipRepository: IIPRepository) { }
 
-  async getIPInfo(ip: string): Promise<{
-    source: string,
-    data: IPInfo,
-  }> {
+  async getIPInfo(ip: string): Promise<IPInfoSource> {
     const cacheKey = `ip:${ip}`;
     const cachedData = await this.ipRepository.getByIp(ip);
 

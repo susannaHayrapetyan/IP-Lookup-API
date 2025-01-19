@@ -1,5 +1,5 @@
 # Use a base image with Node.js
-FROM node:22-alpine
+FROM node:22
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -10,12 +10,9 @@ COPY package*.json ./
 RUN npm install
 
 # Copy the rest of the application code
-COPY ./src /app/src
-
-# Compile TypeScript into JavaScript
-RUN npm run build
+COPY . .
 
 # Expose the application port
 EXPOSE 3000
 # Define the command to run the application
-CMD ["npm", "run", "start:dev"]
+CMD ["npm", "run", "start"]

@@ -1,5 +1,6 @@
-import { IPInfo } from '../entities/ip-info';
+import { IPInfoSource } from '../entities/ip-info';
 
 export interface IIPLookupService {
-  fetchIPInfo(ip: string): Promise<IPInfo>;
+  getIPInfo(ip: string): Promise<IPInfoSource>;
+  deleteIPInfo(ip: string): Promise<boolean>;
 }
