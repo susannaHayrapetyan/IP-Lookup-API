@@ -11,16 +11,14 @@ const server = app.listen(PORT, async () => {
     await connectToDatabase();
     console.log(`Server running on port ${PORT}`);
   } catch (error) {
-    console.error('Failed to start the server:', error);
     // Exit the process on failure
     process.exit(1);
+    console.error('Failed to start the server:', error);
   }
 });
 
 // Graceful shutdown
 const shutdownGracefully = () => {
-  console.log('Received shutdown signal. Closing server gracefully...');
-
   // Close the database connection
   closeDatabaseConnection();
 
@@ -37,5 +35,5 @@ const shutdownGracefully = () => {
 };
 
 // Listen for termination signals (SIGINT, SIGTERM)
-process.on('SIGINT', shutdownGracefully);  // For Ctrl+C (SIGINT)
-process.on('SIGTERM', shutdownGracefully);  // For termination signal (SIGTERM)
+process.on('SIGINT', shutdownGracefully);
+process.on('SIGTERM', shutdownGracefully);
