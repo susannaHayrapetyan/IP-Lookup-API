@@ -2,7 +2,7 @@
 node_modules/
 
 # Ignore TypeScript files (we don't need them in the final container)
-*.ts
+# *.ts
 
 # Ignore logs
 *.log
